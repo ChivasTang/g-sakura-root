@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.co.sakura.core.dao.AuthUserDAO">
+    <resultMap id="BaseResultMap" type="jp.co.sakura.core.domain.dto.AuthUser">
+        <id column="userId" jdbcType="BIGINT" property="userId"/>
+        <association property="user" resultMap="jp.co.sakura.core.dao.UserDAO.BaseResultMap"/>
+        <association property="userInfo" resultMap="jp.co.sakura.core.dao.UserInfoDAO.BaseResultMap"/>
+        <collection property="roles" resultMap="jp.co.sakura.core.dao.RoleDAO.BaseResultMap"/>
+    </resultMap>
+
+    <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="BaseResultMap"
+            resultType="jp.co.sakura.core.domain.dto.AuthUser">
+        select
+            t_user_info.user_id as userId
+            , m_user.username
+            , m_user.password
+            , t_user_info.salt
+            , t_user_info.token
+            , t_user_info.email
+            , t_user_info.manager_id
+            , t_user_info.first_name
+            , t_user_info.last_name
+            , t_user_info.account_expire
+            , t_user_info.password_expire
+            , m_role.role_id
+            , m_role.role_name
+        from m_user
+        inner join t_user_info on m_user.username = t_user_info.username
+        inner join r_user_role on t_user_info.user_id = r_user_role.user_id
+        inner join m_role on r_user_role.role_id = m_role.role_id
+        where m_user.username = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap"
+            resultType="jp.co.sakura.core.domain.dto.AuthUser">
+        select
+            t_user_info.user_id as userId
+            , m_user.username
+            , m_user.password
+            , t_user_info.salt
+            , t_user_info.token
+            , t_user_info.email
+            , t_user_info.manager_id
+            , t_user_info.first_name
+            , t_user_info.last_name
+            , t_user_info.account_expire
+            , t_user_info.password_expire
+            , m_role.role_id
+            , m_role.role_name
+        from t_user_info
+        inner join m_user on t_user_info.username = m_user.username
+        inner join r_user_role on t_user_info.user_id = r_user_role.user_id
+        inner join m_role on r_user_role.role_id = m_role.role_id
+        where t_user_info.user_id = #{userId,jdbcType=BIGINT}
+    </select>
+</mapper>
