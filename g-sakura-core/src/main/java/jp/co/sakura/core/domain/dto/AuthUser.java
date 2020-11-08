@@ -1,5 +1,7 @@
 package jp.co.sakura.core.domain.dto;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import jp.co.sakura.core.domain.entity.Role;
 import jp.co.sakura.core.domain.entity.User;
 import jp.co.sakura.core.domain.entity.UserInfo;
@@ -15,7 +17,9 @@ import java.util.List;
 
 @Data
 @ToString(callSuper = true)
+@TableName
 public class AuthUser implements UserDetails {
+    @TableId
     private Long userId;
     private User user;
     private UserInfo userInfo;
@@ -32,12 +36,12 @@ public class AuthUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.user.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return user.getUsername();
     }
 
     @Override

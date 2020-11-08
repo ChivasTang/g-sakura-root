@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Login Index</title>
+</head>
+<body>
+
+<h1>Hello World...</h1>
+
+<form method="post" action="/login">
+    <input type="hidden" name="returnUrl" value="/">
+    <button type="submit">进入登陆页面</button>
+</form>
+<br>
+<form method="post" action="/registration">
+    <input type="hidden" name="returnUrl" value="/">
+    <button type="submit">注册成为新用户</button>
+</form>
+
+</body>
+</html>

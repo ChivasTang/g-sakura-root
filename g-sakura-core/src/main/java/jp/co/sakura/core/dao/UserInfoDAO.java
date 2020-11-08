@@ -6,8 +6,6 @@ import jp.co.sakura.core.domain.entity.UserInfo;
 public interface UserInfoDAO extends BaseMapper<UserInfo> {
     int deleteByPrimaryKey(Long userId);
 
-    int insert(UserInfo record);
-
     int insertSelective(UserInfo record);
 
     UserInfo selectByPrimaryKey(Long userId);

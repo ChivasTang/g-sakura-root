@@ -46,12 +46,4 @@ public class AuthUserDAOTest {
         System.out.println(objectMapper.writeValueAsString(authUser));
     }
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
 }

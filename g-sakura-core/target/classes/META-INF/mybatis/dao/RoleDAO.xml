@@ -19,12 +19,6 @@
     delete from m_role
     where role_id = #{roleId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="jp.co.sakura.core.domain.entity.Role">
-    insert into m_role (role_id, role_name, description
-      )
-    values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="jp.co.sakura.core.domain.entity.Role">
     insert into m_role
     <trim prefix="(" suffix=")" suffixOverrides=",">

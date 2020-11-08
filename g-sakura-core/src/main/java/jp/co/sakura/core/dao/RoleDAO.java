@@ -6,8 +6,6 @@ import jp.co.sakura.core.domain.entity.Role;
 public interface RoleDAO extends BaseMapper<Role> {
     int deleteByPrimaryKey(Long roleId);
 
-    int insert(Role record);
-
     int insertSelective(Role record);
 
     Role selectByPrimaryKey(Long roleId);

@@ -27,16 +27,6 @@
     delete from t_user_info
     where user_id = #{userId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="jp.co.sakura.core.domain.entity.UserInfo">
-    insert into t_user_info (user_id, username, salt, 
-      token, email, manager_id, 
-      first_name, last_name, account_expire, 
-      password_expire)
-    values (#{userId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
-      #{token,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{managerId,jdbcType=BIGINT}, 
-      #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, #{accountExpire,jdbcType=TIMESTAMP}, 
-      #{passwordExpire,jdbcType=TIMESTAMP})
-  </insert>
   <insert id="insertSelective" parameterType="jp.co.sakura.core.domain.entity.UserInfo">
     insert into t_user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
