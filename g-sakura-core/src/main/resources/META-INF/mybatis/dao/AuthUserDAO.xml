@@ -3,27 +3,29 @@
 <mapper namespace="jp.co.sakura.core.dao.AuthUserDAO">
     <resultMap id="BaseResultMap" type="jp.co.sakura.core.domain.dto.AuthUser">
         <id column="userId" jdbcType="BIGINT" property="userId"/>
-        <association property="user" resultMap="jp.co.sakura.core.dao.UserDAO.BaseResultMap"/>
-        <association property="userInfo" resultMap="jp.co.sakura.core.dao.UserInfoDAO.BaseResultMap"/>
-        <collection property="roles" resultMap="jp.co.sakura.core.dao.RoleDAO.BaseResultMap"/>
+        <association property="currentUser" resultMap="jp.co.sakura.core.dao.UserDAO.AuthUser_BaseResultMap"/>
+        <association property="userInfo" resultMap="jp.co.sakura.core.dao.UserInfoDAO.AuthUser_BaseResultMap"/>
+        <collection property="roles" resultMap="jp.co.sakura.core.dao.RoleDAO.AuthUser_BaseResultMap"/>
     </resultMap>
 
     <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="BaseResultMap"
             resultType="jp.co.sakura.core.domain.dto.AuthUser">
         select
             t_user_info.user_id as userId
-            , m_user.username
-            , m_user.password
-            , t_user_info.salt
-            , t_user_info.token
-            , t_user_info.email
-            , t_user_info.manager_id
-            , t_user_info.first_name
-            , t_user_info.last_name
-            , t_user_info.account_expire
-            , t_user_info.password_expire
-            , m_role.role_id
-            , m_role.role_name
+            , m_user.username as authUser_username
+            , m_user.password as authUser_password
+            , t_user_info.user_id as userInfo_user_id
+            , t_user_info.username as userInfo_username
+            , t_user_info.salt as userInfo_salt
+            , t_user_info.token as userInfo_token
+            , t_user_info.email as userInfo_email
+            , t_user_info.manager_id as userInfo_manager_id
+            , t_user_info.first_name as userInfo_first_name
+            , t_user_info.last_name as userInfo_last_name
+            , t_user_info.account_expire as userInfo_account_expire
+            , t_user_info.password_expire as userInfo_password_expire
+            , m_role.role_id as authUser_role_id
+            , m_role.role_name as authUser_role_name
         from m_user
         inner join t_user_info on m_user.username = t_user_info.username
         inner join r_user_role on t_user_info.user_id = r_user_role.user_id
@@ -35,18 +37,20 @@
             resultType="jp.co.sakura.core.domain.dto.AuthUser">
         select
             t_user_info.user_id as userId
-            , m_user.username
-            , m_user.password
-            , t_user_info.salt
-            , t_user_info.token
-            , t_user_info.email
-            , t_user_info.manager_id
-            , t_user_info.first_name
-            , t_user_info.last_name
-            , t_user_info.account_expire
-            , t_user_info.password_expire
-            , m_role.role_id
-            , m_role.role_name
+            , m_user.username as authUser_username
+            , m_user.password as authUser_password
+            , t_user_info.user_id as userInfo_user_id
+            , t_user_info.username as userInfo_username
+            , t_user_info.salt as userInfo_salt
+            , t_user_info.token as userInfo_token
+            , t_user_info.email as userInfo_email
+            , t_user_info.manager_id as userInfo_manager_id
+            , t_user_info.first_name as userInfo_first_name
+            , t_user_info.last_name as userInfo_last_name
+            , t_user_info.account_expire as userInfo_account_expire
+            , t_user_info.password_expire as userInfo_password_expire
+            , m_role.role_id as authUser_role_id
+            , m_role.role_name as authUser_role_name
         from t_user_info
         inner join m_user on t_user_info.username = m_user.username
         inner join r_user_role on t_user_info.user_id = r_user_role.user_id

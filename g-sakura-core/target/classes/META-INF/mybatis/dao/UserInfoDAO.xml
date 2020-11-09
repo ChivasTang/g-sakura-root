@@ -13,6 +13,20 @@
     <result column="account_expire" jdbcType="TIMESTAMP" property="accountExpire" />
     <result column="password_expire" jdbcType="TIMESTAMP" property="passwordExpire" />
   </resultMap>
+
+  <resultMap id="AuthUser_BaseResultMap" type="jp.co.sakura.core.domain.entity.UserInfo">
+    <id column="userInfo_user_id" jdbcType="BIGINT" property="userId" />
+    <result column="userInfo_username" jdbcType="VARCHAR" property="username" />
+    <result column="userInfo_salt" jdbcType="VARCHAR" property="salt" />
+    <result column="userInfo_token" jdbcType="VARCHAR" property="token" />
+    <result column="userInfo_email" jdbcType="VARCHAR" property="email" />
+    <result column="userInfo_manager_id" jdbcType="BIGINT" property="managerId" />
+    <result column="userInfo_first_name" jdbcType="VARCHAR" property="firstName" />
+    <result column="userInfo_last_name" jdbcType="VARCHAR" property="lastName" />
+    <result column="userInfo_account_expire" jdbcType="TIMESTAMP" property="accountExpire" />
+    <result column="userInfo_password_expire" jdbcType="TIMESTAMP" property="passwordExpire" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     user_id, username, salt, token, email, manager_id, first_name, last_name, account_expire, 
     password_expire

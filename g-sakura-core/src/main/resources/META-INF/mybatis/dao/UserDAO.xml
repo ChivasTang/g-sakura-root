@@ -5,6 +5,12 @@
     <id column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
+
+  <resultMap id="AuthUser_BaseResultMap" type="jp.co.sakura.core.domain.entity.User">
+    <id column="authUser_username" jdbcType="VARCHAR" property="username" />
+    <result column="authUser_password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     username, password
   </sql>

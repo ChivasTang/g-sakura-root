@@ -21,7 +21,7 @@ import java.util.List;
 public class AuthUser implements UserDetails {
     @TableId
     private Long userId;
-    private User user;
+    private User currentUser;
     private UserInfo userInfo;
     private List<Role> roles;
 
@@ -36,12 +36,12 @@ public class AuthUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return currentUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return currentUser.getUsername();
     }
 
     @Override

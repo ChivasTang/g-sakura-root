@@ -6,6 +6,12 @@
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
+
+  <resultMap id="AuthUser_BaseResultMap" type="jp.co.sakura.core.domain.entity.Role">
+    <id column="authUser_role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="authUser_role_name" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     role_id, role_name, description
   </sql>
