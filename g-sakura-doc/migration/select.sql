@@ -1,1 +1,1 @@
-select * from m_user;
+select * from auth_user;

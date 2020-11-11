@@ -1,11 +1,10 @@
-package jp.co.sakura.core.domain.dto;
+package jp.co.sakura.core.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import jp.co.sakura.core.domain.entity.Role;
-import jp.co.sakura.core.domain.entity.User;
-import jp.co.sakura.core.domain.entity.UserInfo;
+import jp.co.sakura.core.constant.CoreConstant;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,13 +16,22 @@ import java.util.List;
 
 @Data
 @ToString(callSuper = true)
-@TableName
-public class AuthUser implements UserDetails {
+@EqualsAndHashCode(callSuper = true)
+@TableName(CoreConstant.TABLE_NAME_M_USER)
+public class AuthUser extends BaseEntity implements UserDetails {
+
     @TableId
     private Long userId;
-    private User currentUser;
+
+    private String username;
+
+    private String password;
+
     private UserInfo userInfo;
+
     private List<Role> roles;
+
+    private static final long serialVersionUID = 1L;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -32,16 +40,6 @@ public class AuthUser implements UserDetails {
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
         }
         return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return currentUser.getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return currentUser.getUsername();
     }
 
     @Override

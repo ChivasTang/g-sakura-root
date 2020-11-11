@@ -19,14 +19,14 @@ public class HomeController {
         return mv;
     }
 
-    @PostMapping("/login")
+    @RequestMapping(value = "/login", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response, Model model, Locale locale) {
         ModelAndView mv = new ModelAndView("login");
         mv.addObject("locale", "ja");
         return mv;
     }
 
-    @PostMapping("/registration")
+    @RequestMapping(value = "/registration", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView registration(HttpServletRequest request, HttpServletResponse response, Model model, Locale locale) {
         ModelAndView mv = new ModelAndView("registration");
         mv.addObject("locale", "ja");

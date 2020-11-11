@@ -4,20 +4,22 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <classPathEntry location="/Users/tsk/.m2/repository/mysql/mysql-connector-java/8.0.22/mysql-connector-java-8.0.22.jar"/>
+    <classPathEntry
+            location="/Users/tsk/.m2/repository/mysql/mysql-connector-java/8.0.22/mysql-connector-java-8.0.22.jar"/>
 
     <context id="MySQL" targetRuntime="MyBatis3" defaultModelType="flat">
 
         <property name="javaFileEncoding" value="UTF-8"/>
 
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
 
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
 
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/gsakura" userId="root" password="rootroot">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/gsakura"
+                        userId="root" password="rootroot">
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
@@ -39,72 +41,55 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-<!--        <table schema="" tableName="m_user" domainObjectName="User" mapperName="UserDAO" enableCountByExample="false"-->
-<!--               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="constructorBased" value="false"/>-->
-<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="immutable" value="false"/>-->
-<!--            <property name="modelOnly" value="false"/>-->
-<!--            <ignoreColumn column="version"/>-->
-<!--            <ignoreColumn column="deleted"/>-->
-<!--            <ignoreColumn column="create_user_id"/>-->
-<!--            <ignoreColumn column="update_user_id"/>-->
-<!--            <ignoreColumn column="create_time"/>-->
-<!--            <ignoreColumn column="update_time"/>-->
-<!--        </table>-->
+        <table schema="" tableName="auth_user" domainObjectName="AuthUser" mapperName="AuthUserDAO" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <property name="constructorBased" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+            <ignoreColumn column="version"/>
+            <ignoreColumn column="deleted"/>
+            <ignoreColumn column="create_user_id"/>
+            <ignoreColumn column="update_user_id"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
 
-<!--        <table schema="" tableName="m_role" domainObjectName="Role" mapperName="RoleDAO" enableCountByExample="false"-->
-<!--               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="constructorBased" value="false"/>-->
-<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="immutable" value="false"/>-->
-<!--            <property name="modelOnly" value="false"/>-->
-<!--            <ignoreColumn column="version"/>-->
-<!--            <ignoreColumn column="deleted"/>-->
-<!--            <ignoreColumn column="create_user_id"/>-->
-<!--            <ignoreColumn column="update_user_id"/>-->
-<!--            <ignoreColumn column="create_time"/>-->
-<!--            <ignoreColumn column="update_time"/>-->
-<!--        </table>-->
+        <table schema="" tableName="m_role" domainObjectName="Role" mapperName="RoleDAO" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <property name="constructorBased" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+            <ignoreColumn column="version"/>
+            <ignoreColumn column="deleted"/>
+            <ignoreColumn column="create_user_id"/>
+            <ignoreColumn column="update_user_id"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
 
-<!--        <table schema="" tableName="t_user_info" domainObjectName="UserInfo" mapperName="UserInfoDAO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
-<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="constructorBased" value="false"/>-->
-<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="immutable" value="false"/>-->
-<!--            <property name="modelOnly" value="false"/>-->
-<!--            <ignoreColumn column="version"/>-->
-<!--            <ignoreColumn column="deleted"/>-->
-<!--            <ignoreColumn column="create_user_id"/>-->
-<!--            <ignoreColumn column="update_user_id"/>-->
-<!--            <ignoreColumn column="create_time"/>-->
-<!--            <ignoreColumn column="update_time"/>-->
-<!--        </table>-->
-
-<!--        <table schema="" tableName="r_user_role" domainObjectName="UserRole" mapperName="UserRoleDAO"-->
-<!--               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
-<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="constructorBased" value="false"/>-->
-<!--            <property name="ignoreQualifiersAtRuntime" value="false"/>-->
-<!--            <property name="useActualColumnNames" value="false"/>-->
-<!--            <property name="immutable" value="false"/>-->
-<!--            <property name="modelOnly" value="false"/>-->
-<!--            <ignoreColumn column="version"/>-->
-<!--            <ignoreColumn column="deleted"/>-->
-<!--            <ignoreColumn column="create_user_id"/>-->
-<!--            <ignoreColumn column="update_user_id"/>-->
-<!--            <ignoreColumn column="create_time"/>-->
-<!--            <ignoreColumn column="update_time"/>-->
-<!--        </table>-->
+        <table schema="" tableName="t_user_info" domainObjectName="UserInfo" mapperName="UserInfoDAO"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <property name="constructorBased" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+            <ignoreColumn column="version"/>
+            <ignoreColumn column="deleted"/>
+            <ignoreColumn column="create_user_id"/>
+            <ignoreColumn column="update_user_id"/>
+            <ignoreColumn column="create_time"/>
+            <ignoreColumn column="update_time"/>
+        </table>
     </context>
 </generatorConfiguration>

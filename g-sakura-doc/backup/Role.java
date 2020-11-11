@@ -14,7 +14,6 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @TableName(CoreConstant.TABLE_NAME_M_ROLE)
 public class Role extends BaseEntity implements Serializable {
-
     @TableId
     private Long roleId;
 

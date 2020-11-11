@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jp.co.sakura.core.dao.AuthUserDAO">
-    <resultMap id="BaseResultMap" type="jp.co.sakura.core.domain.dto.AuthUser">
-        <id column="userId" jdbcType="BIGINT" property="userId"/>
-        <association property="currentUser" resultMap="jp.co.sakura.core.dao.UserDAO.AuthUser_BaseResultMap"/>
-        <association property="userInfo" resultMap="jp.co.sakura.core.dao.UserInfoDAO.AuthUser_BaseResultMap"/>
-        <collection property="roles" resultMap="jp.co.sakura.core.dao.RoleDAO.AuthUser_BaseResultMap"/>
-    </resultMap>
+  <resultMap id="BaseResultMap" type="jp.co.sakura.core.domain.entity.AuthUser">
+    <id column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
 
-    <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="BaseResultMap"
-            resultType="jp.co.sakura.core.domain.dto.AuthUser">
+  <resultMap id="UserDetails_BaseResultMap" type="jp.co.sakura.core.domain.entity.AuthUser">
+    <id column="userId" jdbcType="BIGINT" property="userId"/>
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <association property="userInfo" resultMap="jp.co.sakura.core.dao.UserInfoDAO.AuthUser_BaseResultMap"/>
+    <collection property="roles" resultMap="jp.co.sakura.core.dao.RoleDAO.AuthUser_BaseResultMap"/>
+  </resultMap>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="UserDetails_BaseResultMap" resultType="jp.co.sakura.core.domain.entity.AuthUser">
         select
             t_user_info.user_id as userId
-            , m_user.username as authUser_username
-            , m_user.password as authUser_password
+            , auth_user.username as username
+            , auth_user.password as password
             , t_user_info.user_id as userInfo_user_id
             , t_user_info.username as userInfo_username
             , t_user_info.salt as userInfo_salt
@@ -26,19 +31,17 @@
             , t_user_info.password_expire as userInfo_password_expire
             , m_role.role_id as authUser_role_id
             , m_role.role_name as authUser_role_name
-        from m_user
-        inner join t_user_info on m_user.username = t_user_info.username
+        from auth_user
+        inner join t_user_info on auth_user.username = t_user_info.username
         inner join r_user_role on t_user_info.user_id = r_user_role.user_id
         inner join m_role on r_user_role.role_id = m_role.role_id
-        where m_user.username = #{username,jdbcType=VARCHAR}
+        where auth_user.username = #{username,jdbcType=VARCHAR}
     </select>
-
-    <select id="selectUserByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap"
-            resultType="jp.co.sakura.core.domain.dto.AuthUser">
+  <select id="selectByUserId" parameterType="java.lang.Long" resultMap="UserDetails_BaseResultMap" resultType="jp.co.sakura.core.domain.entity.AuthUser">
         select
             t_user_info.user_id as userId
-            , m_user.username as authUser_username
-            , m_user.password as authUser_password
+            , auth_user.username as username
+            , auth_user.password as password
             , t_user_info.user_id as userInfo_user_id
             , t_user_info.username as userInfo_username
             , t_user_info.salt as userInfo_salt
@@ -52,7 +55,7 @@
             , m_role.role_id as authUser_role_id
             , m_role.role_name as authUser_role_name
         from t_user_info
-        inner join m_user on t_user_info.username = m_user.username
+        inner join auth_user on t_user_info.username = auth_user.username
         inner join r_user_role on t_user_info.user_id = r_user_role.user_id
         inner join m_role on r_user_role.role_id = m_role.role_id
         where t_user_info.user_id = #{userId,jdbcType=BIGINT}

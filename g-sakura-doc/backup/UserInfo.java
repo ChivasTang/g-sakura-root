@@ -2,6 +2,7 @@ package jp.co.sakura.core.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jp.co.sakura.core.constant.CoreConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,7 @@ public class UserInfo extends BaseEntity implements Serializable {
 
     private String username;
 
+    @JsonIgnore
     private String salt;
 
     private String token;

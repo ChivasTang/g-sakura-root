@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Test Login Index</title>
 </head>
 <body>
+<h1>This is index Page!</h1>
 
-<h1>Hello World...</h1>
-
-<form method="post" action="/login">
-    <input type="hidden" name="returnUrl" value="/">
-    <button type="submit">进入登陆页面</button>
+<form action="/registration" method="post">
+    <input type="submit" value="Registration"/>
 </form>
 <br>
-<form method="post" action="/registration">
-    <input type="hidden" name="returnUrl" value="/">
-    <button type="submit">注册成为新用户</button>
+<form action="/login" method="post">
+    <input type="submit" value="SignIn"/>
+</form>
+<br>
+<form action="/login?logout" method="post">
+    <input type="submit" value="SignOut"/>
 </form>
 
 </body>

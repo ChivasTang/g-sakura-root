@@ -1,10 +1,13 @@
+DROP database gsakura;
+CREATE database gsakura;
+use gsakura;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 -- -----------------------------------------------------
 -- Table `gsakura`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `gsakura`.`m_user`;
-CREATE TABLE IF NOT EXISTS `gsakura`.`m_user`
+DROP TABLE IF EXISTS `gsakura`.auth_user;
+CREATE TABLE IF NOT EXISTS `gsakura`.auth_user
 (
     username       varchar(255)  NOT NULL COMMENT '用户名',
     password       varchar(255)  NOT NULL COMMENT '密码',
@@ -19,10 +22,10 @@ CREATE TABLE IF NOT EXISTS `gsakura`.`m_user`
   DEFAULT CHARACTER SET = UTF8MB4
   COLLATE = utf8mb4_general_ci
   ROW_FORMAT = Dynamic;
-INSERT INTO `gsakura`.`m_user`(username, password)
-VALUES ('root', '$2a$10$yGcOz3ekNI6Ya67tqQueS.raxyTOedGsv5jh2BwtRrI5/K9QEIPGq'),
-       ('boss', '$2a$10$yGcOz3ekNI6Ya67tqQueS.raxyTOedGsv5jh2BwtRrI5/K9QEIPGq'),
-       ('staff', '$2a$10$yGcOz3ekNI6Ya67tqQueS.raxyTOedGsv5jh2BwtRrI5/K9QEIPGq');
+INSERT INTO `gsakura`.auth_user(username, password)
+VALUES ('root', '$2a$10$tB2bAUMDVkvo4jQlauukJerCiqdsOaIunM3EBeUazF9ALEzW2MzSO'),
+       ('boss', '$2a$10$tB2bAUMDVkvo4jQlauukJerCiqdsOaIunM3EBeUazF9ALEzW2MzSO'),
+       ('staff', '$2a$10$tB2bAUMDVkvo4jQlauukJerCiqdsOaIunM3EBeUazF9ALEzW2MzSO');
 -- -----------------------------------------------------
 -- Table `gsakura`.`role`
 -- -----------------------------------------------------
@@ -96,8 +99,10 @@ CREATE TABLE IF NOT EXISTS `gsakura`.`t_user_info`
     create_time     TIMESTAMP    DEFAULT CURRENT_TIMESTAMP COMMENT '作成時間',
     update_time     TIMESTAMP    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新時間',
     PRIMARY KEY (user_id),
+    UNIQUE KEY UNIQUE_T_USER_INFO_USERNAME (username),
+    UNIQUE KEY UNIQUE_T_USER_INFO_EMAIL (email),
     CONSTRAINT fk_manager_id_ref_t_user_info_user_id FOREIGN KEY (manager_id) REFERENCES t_user_info(user_id),
-    CONSTRAINT fk_username_ref_m_user_username FOREIGN KEY (username) REFERENCES m_user (username)
+    CONSTRAINT fk_username_ref_auth_user_username FOREIGN KEY (username) REFERENCES auth_user (username)
 ) ENGINE = InnoDB
   DEFAULT CHARACTER SET = UTF8MB4
   COLLATE = utf8mb4_general_ci
